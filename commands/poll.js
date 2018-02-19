@@ -14,13 +14,11 @@ exports.run = (client, message, args, level) => {
   .setFooter(`Poll Started By: ${message.author.username}`, `${message.author.avatarURL}`)
 
   message.channel.send({embed})
-.then(function (message) {
-    message.react("👍")
-    message.react("👎")
-    message.react("🤷")
-  }).catch(function() {
-  });
-  
+  message.react('👍')
+  .then(() => message.react('👎'))
+  .then(() => message.react('🤷'))
+  .catch(() => console.error('Emoji failed to react.'));
+
 }
 
  
