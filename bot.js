@@ -4,17 +4,6 @@ const fs = require("fs");
 const config = require("./config.json");
 
 
-/*/ Start of loading events /*/
-fs.readdir("./events/", (err, files) => {
-  if (err) return console.error(err);
-  files.forEach(file => {
-    let eventFunction = require(`./events/${file}`);
-    let eventName = file.split(".")[0];
-    client.on(eventName, (...args) => eventFunction.run(client, ...args));
-  });
-});
-/*/ End of loading events /*/
-
 /*/ Start of loading commands /*/
 client.on("message", message => {
   if (message.author.bot) return;
